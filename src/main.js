@@ -33,6 +33,26 @@ Vue.use(bar,{
   inverse: false
 })
 
+window.toJSON = JSON.stringify
+
+import './assets/global.css'
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.needLogin)) {
+    if (!store.state.user) {
+      // Vue.prototype.$message.error("请先登录");
+      app.$message.error("请先登录");
+      next({
+        path: '/signIn'
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() // 确保一定要调用 next()
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

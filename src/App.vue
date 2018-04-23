@@ -1,7 +1,7 @@
 <template>
   <div id="app">
         <my-header></my-header>
-    <img src="./assets/logo.png">
+    <!-- <img src="./assets/logo.png"> -->
     <router-view/>
     <vue-progress-bar></vue-progress-bar>
   </div>
