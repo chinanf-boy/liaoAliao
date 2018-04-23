@@ -5,7 +5,25 @@ vue.use(vuex)
 
 const store = new vuex.Store({
   state:{
-    coll: true
+    user: null
+  },
+  mutations:{
+    setUser: (state, data) =>{
+
+      localStorage.setItem('user', JSON.stringify(data)) // object => str
+
+      state.user = data // Object
+    }
+  },
+  actions: {
+    exit(context){
+      context.commit('setUser', null);
+    },
+    login(context, user){
+      user = typeof user === 'string'? JSON.parse(user) : user
+      console.log(typeof user)
+      context.commit('setUser', user);
+    }
   }
 })
 

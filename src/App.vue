@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+        <my-header></my-header>
     <img src="./assets/logo.png">
     <router-view/>
     <vue-progress-bar></vue-progress-bar>
@@ -7,8 +8,14 @@
 </template>
 
 <script>
+import MyHeader from '@/components/Header';
+
 export default {
   name: 'App',
+
+    components: {
+    MyHeader
+  },
   mounted () {
     //  [App.vue specific] When App.vue is finish loading finish the progress bar
     this.$Progress.finish()
@@ -47,4 +54,8 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+  body{
+    margin: 0;
+    padding: 0;
+  }
 </style>
