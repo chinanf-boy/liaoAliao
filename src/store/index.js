@@ -3,6 +3,8 @@ import vue from 'vue'
 
 vue.use(vuex)
 
+import axios from '../http'
+
 const store = new vuex.Store({
   state:{
     user: null
@@ -17,7 +19,7 @@ const store = new vuex.Store({
   },
   getters: {
     uid({user}){
-      if(user) return user.name;
+      if(user) return user.uid;
       return false;
     }
   },
@@ -29,6 +31,26 @@ const store = new vuex.Store({
       user = typeof user === 'string'? JSON.parse(user) : user
       console.log(typeof user)
       context.commit('setUser', user);
+    },
+    getCurrentUser(context, uid){
+      axios.get('/'+uid).then(res =>{
+        // this.checkFowlled()
+
+        console.log('get res 1111')
+        return res
+      }).catch(error => {
+        vue.$message.error(error.message)
+      })
+      console.log(" middle ")
+      return  axios.get('/'+uid).then(res =>{
+        // this.checkFowlled()
+
+        console.log('get res 2222')
+        return res
+      }).catch(error => {
+        vue.$message.error(error.message)
+      })
+
     }
   }
 })

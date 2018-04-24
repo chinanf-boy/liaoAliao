@@ -165,7 +165,7 @@ export default {
     createArticle(){
       let article = {}
 
-      article['author'] =  this.user.name
+      article['author'] =  { name:this.user.name, uid:this.user.uid }
       article['title'] =  this.form.title
       article['content'] =  this.getContent()
       article['category'] =  this.form.category

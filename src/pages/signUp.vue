@@ -84,16 +84,29 @@ export default {
   methods: {
     submitForm(formName) {
       let { name, email, pwd } = this.user
+      let uid = new Date().getTime()
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.axios.post(name+pwd,{
             name,
             email,
-            pwd
+            pwd,
+            uid
           }).then(res =>{
             this.$store.dispatch('login', res.config.data)
             this.$router.go(-1) // 回到上一页
             this.$message.success("注册成功！")
+          }).catch(error => {
+            this.$message.error(error.message)
+          })
+
+          this.axios.post('/'+uid,{
+            name,
+            email,
+            pwd,
+            uid
+          }).then(res =>{
+
           }).catch(error => {
             this.$message.error(error.message)
           })

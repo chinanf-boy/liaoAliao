@@ -3,13 +3,13 @@
   <template v-if="article">
     <h2>{{ article['title'] }}</h2>
 
-    <div class="oprator" v-if="uid == article['author']">
+    <div class="oprator" v-if="uid == article['author'].uid">
       <router-link :to="{ name:'ArticleEdit', params: {id: article.id} }" tag="button">修改</router-link >
       <button @click="destroy">删除</button>
     </div>
 
     <div class="container">
-      <span> author {{ article['author'] }}</span> <br>
+      <span> author {{ article['author'].name }}</span> <br>
       <span> cate {{ article['category'] }}</span>
     </div>
 
@@ -42,6 +42,7 @@
           this.article = res.data.result
           this.$Progress.finish()
         }).catch(console.error)
+
       },
       destroy(){
         this.axios.post('/articles/'+id, null).then(res =>{

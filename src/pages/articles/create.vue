@@ -94,7 +94,7 @@ export default {
     },
     getCategory(){
 
-    this.axios.get(this.user.name+this.user.pwd+'/Category').then(res =>{ // get cat
+    this.axios.get('/Category').then(res =>{ // get cat
         return res.data.result
       }).then(results =>{
         this.categorys = results
@@ -116,7 +116,8 @@ export default {
     createArticle(){
       let article = {}
 
-      article['author'] =  this.user.name
+      article['author'] =  { name:this.user.name, uid:this.user.uid }
+
       article['title'] =  this.form.title
       article['content'] =  this.content()
       article['category'] =  this.form.category

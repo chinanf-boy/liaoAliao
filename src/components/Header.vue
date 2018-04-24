@@ -1,7 +1,7 @@
 <template>
   <div class="container">
         <el-menu :router="true" :default-active="active" class="el-menu" mode="horizontal" @select="handleSelect">
-      <el-menu-item class="logo" index="/">番薯</el-menu-item>
+      <el-menu-item class="logo" index="/">永🌟星</el-menu-item>
       <el-menu-item index="/article?type=all"><i class="fa fa-flag" aria-hidden="true"></i> 探索</el-menu-item>
 
          <template v-if="user">
@@ -11,6 +11,8 @@
             <el-menu-item index="/article?type=me">我的文章</el-menu-item>
             <el-menu-item index="/articles/create">发布文章</el-menu-item>
             <el-menu-item index="5-3">消息</el-menu-item>
+            <el-menu-item index="me" :route="{ name:'User', params:{ id : user.uid }}">我的主页</el-menu-item>
+
           </el-submenu>
         </template>
         <template v-else>

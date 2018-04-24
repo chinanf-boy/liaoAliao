@@ -14,6 +14,7 @@ import store from './store'
 if(localStorage.getItem('user') !== 'null')
 store.commit('setUser',JSON.parse(localStorage.getItem('user')))
 
+
 Vue.prototype.axios = axios;
 
 Vue.config.productionTip = false

@@ -28,7 +28,7 @@ export default {
     return {
       labelPosition: 'top',
       user: {
-        name: 'yobrave',
+        name: 'yo1995',
         pwd: 'yobrave1',
       },
       rules: {

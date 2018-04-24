@@ -7,6 +7,7 @@
       <article v-for="article in articles" :key="article.id">
         <h3>
           <router-link :to="{ name:'ArticleShow', params: { id: article.id }}">{{ article.title }}</router-link>
+           <router-link :to="{ name: 'User', params: { id: article.author.uid }}">{{ article.author.name }}</router-link>
         </h3>
       </article>
     </section>
