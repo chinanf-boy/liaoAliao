@@ -1,6 +1,6 @@
 # blog-meS
 
-> A Vue.js project with [JSONstore](https://github.com/bluzi/jsonstore) and [axios](https://github.com/axios/axios)
+> A Vue.js project with [JSONstore](https://github.com/bluzi/jsonstore) and [axios](https://github.com/axios/axios) 聊啊聊
 
 ## Build Setup
 
