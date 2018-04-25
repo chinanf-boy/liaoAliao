@@ -13,7 +13,7 @@
             <el-menu-item index="/follower">我的follower</el-menu-item>
             <el-menu-item index="/followee">我的关注</el-menu-item>
 
-            <el-menu-item index="5-3">消息</el-menu-item>
+            <el-menu-item index="/message">消息</el-menu-item>
             <el-menu-item index="me" :route="{ name:'User', params:{ id : user.uid }}">我的主页</el-menu-item>
 
           </el-submenu>

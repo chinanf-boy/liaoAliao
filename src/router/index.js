@@ -7,6 +7,8 @@ import User from '@/user/index'
 import Follower from '@/user/myFollower'
 import Followed from '@/user/myFollowee'
 import Friend from '@/user/friend'
+import Message from '@/user/message'
+
 
 
 import ArticleEdit from '@/pages/articles/edit'
@@ -44,6 +46,11 @@ export default new Router({
       path: '/friend',
       name: 'Friend',
       component: Friend,
+    },
+    {
+      path: '/message',
+      name: 'Message',
+      component: Message,
     },
     {
       path: '/article',

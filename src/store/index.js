@@ -41,16 +41,13 @@ const store = new vuex.Store({
       axios.get('/'+uid).then(res =>{
         // this.checkFowlled()
 
-        console.log('get res 1111')
         return res
       }).catch(error => {
         vue.$message.error(error.message)
       })
-      console.log(" middle ")
       return  axios.get('/'+uid).then(res =>{
         // this.checkFowlled()
 
-        console.log('get res 2222')
         return res
       }).catch(error => {
         vue.$message.error(error.message)

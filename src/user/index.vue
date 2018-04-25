@@ -5,7 +5,21 @@
     <hr>
     <div class="oprator" v-if="user">
       <button v-if="user.uid != current_user.uid" @click="toggleFollow">{{ followed? '取消关注':'关注' }}该用户</button>
+      <button v-if="user.uid != current_user.uid" @click="dialogFormVisible = true">发送私信</button>
     </div>
+
+    <el-dialog title="发送私信给该用户" :visible.sync="dialogFormVisible">
+      <el-form :model="form" ref="form" label-width="80px" label-position="top" :rules="rules">
+        <el-form-item label="私信内容" prop="msg">
+          <el-input type="textarea" v-model="form.msg"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary"  @click="sendMsg">确 定</el-button>
+      </div>
+    </el-dialog>
+
     <ul>
       <li v-for="article in articles" :key="article.id"><router-link :to="{ name: 'ArticleShow', params: {id: article.id} }">{{ article['title'] }}</router-link></li>
     </ul>
@@ -115,6 +129,51 @@ import { mapState } from 'vuex';
           this.followed = fd.includes(this.id)
         }
       )
+    },
+    sendMsg(){
+      if (!this.form.msg) {
+        this.$message.error("信息不能为空");
+        return;
+      }
+
+      let { uid, name, pwd } = this.current_user
+
+      let toUid = uid
+      let toM = name+pwd
+      let formUid = this.user.uid
+
+      let message = {};
+
+      let mTime = new Date()
+
+      message['id'] = mTime.getTime()
+      message['time'] = mTime.toLocaleDateString() +' '+ mTime.toLocaleTimeString()
+      message['content'] = this.form.msg
+      message['to'] = { uid:toUid, name}
+      message['form'] = { uid:formUid, name:this.user.name}
+
+      this.axios.post(toM+'/messages/'+formUid+'/'+mTime.getTime(), message).then((status) => {
+          if(status.data.ok){
+            this.dialogFormVisible = false;
+            this.$message({message:'发送私信成功！', type:'success'});
+          }
+
+          // let formM = this.user.name + this.user.pwd
+
+          // this.axios.post(formM+'/messages/'+toUid+'/'+mTime.getTime(), message).then((status) => {
+          //     if(status.date.ok){
+          //       this.dialogFormVisible = false;
+          //       this.$message({message:'发送私信成功！', type:'success'});
+          //     }
+
+          // },(err) =>{
+          //   this.$message.error(err);
+          // })
+
+      },(err) =>{
+        this.$message.error(err);
+      })
+
     }
   }
   }
