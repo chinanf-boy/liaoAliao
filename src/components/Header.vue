@@ -53,6 +53,7 @@ methods: {
     ...mapActions(['exit']),
     heandleExit(){
       this.exit();
+      this.$router.replace({path:'/'});
       this.$message.success('成功退出');
     }
 }

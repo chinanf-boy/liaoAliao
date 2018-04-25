@@ -5,10 +5,10 @@ import bar from 'vue-progressbar'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 
-import App from './App'
-import axios from './http'
 import router from './router'
+import axios from './http'
 import store from './store'
+import App from './App'
 
 // refresh get store
 if(localStorage.getItem('user') !== 'null')
@@ -41,7 +41,6 @@ import './assets/global.css'
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.needLogin)) {
     if (!store.state.user) {
-      // Vue.prototype.$message.error("请先登录");
       app.$message.error("请先登录");
       next({
         path: '/signIn'
@@ -55,7 +54,7 @@ router.beforeEach((to, from, next) => {
 })
 
 /* eslint-disable no-new */
-new Vue({
+var app = new Vue({
   el: '#app',
   axios,
   router,
