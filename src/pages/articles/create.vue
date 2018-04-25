@@ -132,6 +132,16 @@ export default {
         console.log(this.user.name+this.user.pwd+'/'+hash, article);
         const message =  `文章《${article['title']}》发布成功`;
         this.$message({message, type: 'success'})
+
+        // 添加状态
+        let { uid, name} = this.user
+        let status = { source:{uid, name, type:"create_article"}, article}
+        this.axios.post('/status/'+this.user.uid,status).then(res =>{
+
+        }).catch(console.error)
+
+
+
       }).catch(console.error);
 
       this.axios.post('/articles/'+hash, article).then((res) => {

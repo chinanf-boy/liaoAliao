@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div v-if="title">
     <header>
       <h2>{{ title }}</h2>
     </header>
@@ -11,6 +12,8 @@
         </h3>
       </article>
     </section>
+    </div>
+    <div v-else>Loading</div>
   </div>
 </template>
 

@@ -15,6 +15,11 @@ const store = new vuex.Store({
       localStorage.setItem('user', JSON.stringify(data)) // object => str
 
       state.user = data // Object
+    },
+    setFollowed: (state, data) =>{
+
+      state.user.followed = data // Object
+
     }
   },
   getters: {

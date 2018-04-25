@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <router-link to="/list">list.vue</router-link>
+    <router-link to="/friend">盆友圈状态</router-link>
   </div>
 </template>
 

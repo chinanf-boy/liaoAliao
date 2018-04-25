@@ -11,6 +11,7 @@
     </ul>
 
   </div>
+<span v-else> loading </span>
 </template>
 
 <script>
@@ -71,13 +72,38 @@ import { mapState } from 'vuex';
         this.axios.post(this.user.name+this.user.pwd+'/followed', followArray).then(() => {
           this.followed = false;
           this.$message({type:'success', message: '取消关注成功'});
+          this.$sotre.commit('setFollowed', followArray)
         }).catch(console.error);
+
+        // 减粉丝
+        this.axios.get(this.current_user.name+this.current_user.pwd+'/follower').then(res =>{
+          let followers = res.data.result || []
+          followers = followers.filter(e =>e !== this.user.uid)
+          this.axios.post(this.current_user.name+this.current_user.pwd+'/follower', followers).then(() => {
+
+          }).catch(console.error);
+        }).catch(console.error);
+
       }else{
         // 关注
-        followArray.push(uid)
+        !followArray.includes(uid) && followArray.push(uid)
         this.axios.post(this.user.name+this.user.pwd+'/followed', followArray).then(() => {
           this.followed = true;
           this.$message({type:'success', message: '关注成功'});
+          this.$sotre.commit('setFollowed', followArray)
+
+        }).catch(console.error);
+
+          // 加粉丝
+        this.axios.get(this.current_user.name+this.current_user.pwd+'/follower').then(res =>{
+
+          let followers = res.data.result || []
+
+           followers.push(this.user.uid)
+
+          this.axios.post(this.current_user.name+this.current_user.pwd+'/follower', followers).then(() => {
+
+          }).catch(console.error);
         }).catch(console.error);
       }
     },

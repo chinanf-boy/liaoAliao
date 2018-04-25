@@ -4,6 +4,10 @@ import HelloWorld from '@/components/HelloWorld'
 import ArticleList from '@/pages/List'
 import ArticleShow from '@/pages/articles/index'
 import User from '@/user/index'
+import Follower from '@/user/myFollower'
+import Followed from '@/user/myFollowee'
+import Friend from '@/user/friend'
+
 
 import ArticleEdit from '@/pages/articles/edit'
 
@@ -25,6 +29,21 @@ export default new Router({
       path: '/user/:id',
       name: 'User',
       component: User,
+    },
+    {
+      path: '/follower',
+      name: 'Follower',
+      component: Follower,
+    },
+    {
+      path: '/followee',
+      name: 'Followee',
+      component: Followed,
+    },
+    {
+      path: '/friend',
+      name: 'Friend',
+      component: Friend,
     },
     {
       path: '/article',

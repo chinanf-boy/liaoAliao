@@ -87,6 +87,10 @@ export default {
       let uid = new Date().getTime()
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          this.axios.get(name+pwd).then(res =>{
+
+          if(res.data.result) throw new Error(" 有人啦 , 改改名字")
+
           this.axios.post(name+pwd,{
             name,
             email,
@@ -111,6 +115,9 @@ export default {
             this.$message.error(error.message)
           })
 
+          }).catch(error => {
+            this.$message.error(error.message)
+          })
         } else {
            this.$message.error('错了哦，您填写的信息有错误，请按照提示修改。');
           return false;
