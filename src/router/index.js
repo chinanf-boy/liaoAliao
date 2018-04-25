@@ -46,6 +46,9 @@ export default new Router({
       path: '/friend',
       name: 'Friend',
       component: Friend,
+      meta: {
+        needLogin: true
+      }
     },
     {
       path: '/message',
